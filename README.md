@@ -1,41 +1,69 @@
-# Income Prediction Microservice
+# Adult Income Prediction Project
 
-This microservice provides income prediction based on various personal and professional features. It uses a machine learning model to predict whether an individual's income is above or below $50,000 USD per year.
+This project aims to predict whether an individual's income exceeds $50,000 per year based on census data. It consists of two main parts:
+1. Exploratory Data Analysis (EDA) and Model Training
+2. Microservice for Model Inference
 
 ## Table of Contents
 
 1. [Repository Structure](#repository-structure)
-2. [Prerequisites](#prerequisites)
-3. [Installation](#installation)
-4. [Running the Microservice](#running-the-microservice)
-5. [API Endpoints](#api-endpoints)
-6. [Using the API](#using-the-api)
-7. [Input Format](#input-format)
-8. [Output Format](#output-format)
-9. [Handling Missing Values](#handling-missing-values)
-10. [Error Handling](#error-handling)
-11. [Common Errors](#common-errors)
-12. [API Documentation](#api-documentation)
-13. [Example Usage](#example-usage)
+2. [Exploratory Data Analysis and Model Training](#exploratory-data-analysis-and-model-training)
+3. [Income Prediction Microservice](#income-prediction-microservice)
+4. [Prerequisites](#prerequisites)
+5. [Installation](#installation)
+6. [Running the Microservice](#running-the-microservice)
+   - [Locally](#locally)
+   - [On a Virtual Machine](#on-a-virtual-machine)
+7. [API Endpoints](#api-endpoints)
+8. [Using the API](#using-the-api)
+9. [Input Format](#input-format)
+10. [Output Format](#output-format)
+11. [Handling Missing Values](#handling-missing-values)
+12. [Error Handling](#error-handling)
+13. [API Documentation](#api-documentation)
+14. [Example Usage](#example-usage)
 
 ## Repository Structure
 
 ```
-/inference-service
-├── model/
-│   └── model.pkl
-├── model_docs/
-│   ├── label_mappings.json
-│   ├── mode_values.json
-│   └── standart_scaler.json
-├── app.py
-├── dockerfile
-├── preprocess.py
-└── requirements.txt
+/
+├── EDA_and_Model_Training.ipynb
+├── inference-service/
+│   ├── model/
+│   │   └── model.pkl
+│   ├── model_docs/
+│   │   ├── label_mappings.json
+│   │   ├── mode_values.json
+│   │   └── standart_scaler.json
+│   ├── app.py
+│   ├── dockerfile
+│   ├── preprocess.py
+│   └── requirements.txt
+└── README.md
 ```
+
+## Exploratory Data Analysis and Model Training
+
+The file `EDA_and_Model_Training.ipynb` contains the following:
+
+- Data loading and initial exploration
+- Data cleaning and preprocessing
+- Exploratory Data Analysis (EDA) with visualizations
+- Feature engineering and selection
+- Model selection, training, and evaluation
+- Model serialization (saving the trained model)
+
+To view the EDA and model training process:
+1. Open the `EDA_and_Model_Training.ipynb` file in Jupyter Notebook or JupyterLab.
+2. Run the cells sequentially to see the analysis, visualizations, and model training process.
+
+## Income Prediction Microservice
+
+The microservice provides income prediction based on various personal and professional features. It uses the machine learning model trained in the EDA process to predict whether an individual's income is above or below $50,000 USD per year.
 
 ## Prerequisites
 
+- Python 3.7+
 - Docker
 - cURL (for testing the API)
 
@@ -54,6 +82,8 @@ This microservice provides income prediction based on various personal and profe
 
 ## Running the Microservice
 
+### Locally
+
 Run the Docker container:
 
 ```
@@ -61,6 +91,34 @@ docker run -p 8000:8000 income-prediction-service
 ```
 
 The service will be available at `http://localhost:8000`.
+
+### On a Virtual Machine
+
+To run the service on a VM:
+
+1. Install Docker on the VM.
+2. Copy the project files to the VM:
+   ```
+   scp -r /path/to/Adult_Income_Inference user@vm_ip:/path/on/vm/
+   ```
+3. SSH into the VM:
+   ```
+   ssh user@vm_ip
+   ```
+4. Navigate to the project directory:
+   ```
+   cd /path/on/vm/Adult_Income_Inference/inference-service
+   ```
+5. Build the Docker image:
+   ```
+   docker build -t income-prediction-service .
+   ```
+6. Run the Docker container:
+   ```
+   docker run -p 8000:8000 income-prediction-service
+   ```
+
+The service will be available at `http://<vm_ip>:8000`.
 
 ## API Endpoints
 
