@@ -19,6 +19,14 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Add this new endpoint
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to the Income Prediction API",
+        "documentation": "/docs",
+        "predict_endpoint": "/predict"
+    }
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
