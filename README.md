@@ -16,8 +16,7 @@ This microservice provides income prediction based on various personal and profe
 10. [Error Handling](#error-handling)
 11. [Common Errors](#common-errors)
 12. [API Documentation](#api-documentation)
-13. [Dockerfile](#dockerfile)
-14. [Example Usage](#example-usage)
+13. [Example Usage](#example-usage)
 
 ## Repository Structure
 
